@@ -21,14 +21,20 @@ DATABASES = {
     }
 }
 
-# Configuraciones adicionales para desarrollo
-INSTALLED_APPS += [
-    'debug_toolbar',
-]
-
-MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-] + MIDDLEWARE
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE', 'django.db.backends.mysql'),
+        'NAME': os.environ.get('DB_NAME', 'redimensiona_db'),
+        'USER': os.environ.get('DB_USER', 'redimensiona_user'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
+    }
+}
 
 INTERNAL_IPS = [
     '127.0.0.1',
