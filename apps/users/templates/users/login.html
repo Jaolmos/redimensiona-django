@@ -5,21 +5,45 @@
 {% block content %}
 <h2>Iniciar sesión</h2>
 
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
-    {{ form.non_field_errors }}
     
+    {% if form.non_field_errors %}
     <div>
-        {{ form.username.label_tag }}
-        {{ form.username }}
-        {{ form.username.errors }}
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
     </div>
+    {% endif %}
     
+    {% for field in form %}
     <div>
-        {{ form.password.label_tag }}
-        {{ form.password }}
-        {{ form.password.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+        
+        {% if field.errors %}
+        <div>
+            {% for error in field.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
+        {% endif %}
     </div>
+    {% endfor %}
     
     <button type="submit">Iniciar sesión</button>
 </form>

@@ -5,32 +5,37 @@
 {% block content %}
 <h2>Registrarse</h2>
 
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <form method="post">
     {% csrf_token %}
     
+    {% for field in form %}
     <div>
-        {{ form.email.label_tag }}
-        {{ form.email }}
-        {{ form.email.errors }}
-    </div>
-    
-    <div>
-        {{ form.password1.label_tag }}
-        {{ form.password1 }}
-        {{ form.password1.errors }}
-        {% if form.password1.help_text %}
-            <small>{{ form.password1.help_text }}</small>
+        {{ field.label_tag }}
+        {{ field }}
+        
+        {% if field.errors %}
+        <div>
+            {% for error in field.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
         {% endif %}
     </div>
-    
-    <div>
-        {{ form.password2.label_tag }}
-        {{ form.password2 }}
-        {{ form.password2.errors }}
-        {% if form.password2.help_text %}
-            <small>{{ form.password2.help_text }}</small>
-        {% endif %}
-    </div>
+    {% endfor %}
     
     <button type="submit">Registrarse</button>
 </form>
