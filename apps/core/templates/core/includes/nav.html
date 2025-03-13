@@ -5,7 +5,7 @@
             <li><a href="{% url 'core:home' %}">Inicio</a></li>
             {% if user.is_authenticated %}
                 <li><span>Bienvenido, {{ user.email }}</span></li>
-                <li><a href="/dashboard/">Dashboard</a></li>
+                <li><a href="{% url 'users:dashboard' %}">Dashboard</a></li>
                 <li><a href="{% url 'users:logout' %}">Cerrar sesión</a></li>
             {% else %}
                 <li><a href="{% url 'users:login' %}">Iniciar sesión</a></li>

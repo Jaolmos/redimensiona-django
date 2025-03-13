@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from apps.images.models import Image
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
@@ -27,3 +29,26 @@ def logout_view(request):
     """Vista personalizada para cerrar sesión"""
     logout(request)
     return redirect('core:home')
+
+
+@login_required
+def dashboard(request):
+    """Vista del panel de control del usuario."""
+    # Obtener todas las imágenes del usuario
+    user_images = Image.objects.filter(user=request.user).order_by('-uploaded_at')
+    
+    return render(request, 'users/dashboard.html', {
+        'user_images': user_images
+    })
+
+
+@login_required
+def delete_image(request, image_id):
+    """Vista para eliminar una imagen del usuario."""
+    image = get_object_or_404(Image, id=image_id, user=request.user)
+    
+    # Eliminar la imagen y todas sus miniaturas
+    image.delete()
+    
+    messages.success(request, _("La imagen ha sido eliminada correctamente."))
+    return redirect('users:dashboard')
