@@ -10,43 +10,29 @@
     <div>
         <h3>Sube tu imagen</h3>
         
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" action="{% url 'images:upload' %}" enctype="multipart/form-data">
             {% csrf_token %}
             
+            {% for field in form %}
             <div>
-                <p>Selecciona una imagen:</p>
-                <input type="file" name="image" id="id_image" accept="image/*">
+                {{ field.label_tag }}
+                {{ field }}
+                
+                {% if field.errors %}
+                <div>
+                    {% for error in field.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+                {% endif %}
             </div>
+            {% endfor %}
             
-            <div>
-                <h4>Tamaños predefinidos</h4>
-                <div>
-                    <input type="checkbox" name="size_sm" id="size_sm" checked>
-                    <label for="size_sm">Pequeño (300x300px)</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="size_md" id="size_md" checked>
-                    <label for="size_md">Mediano (600x600px)</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="size_lg" id="size_lg" checked>
-                    <label for="size_lg">Grande (1200x1200px)</label>
-                </div>
-            </div>
-            
-            <div>
-                <h4>Tamaño personalizado</h4>
-                <div>
-                    <input type="number" name="custom_width" placeholder="Ancho">
-                    <span>x</span>
-                    <input type="number" name="custom_height" placeholder="Alto">
-                    <span>px</span>
-                </div>
-            </div>
-            
-            <div>
-                <button type="submit">Redimensionar</button>
-            </div>
+            <button type="submit">Redimensionar</button>
         </form>
     </div>
 </div>
@@ -54,7 +40,7 @@
 <div>
     <h3>Características</h3>
     <ul>
-        <li><strong>Rápido:</strong> Procesamiento asíncrono que te permite generar múltiples tamaños en segundos.</li>
+        <li><strong>Rápido:</strong> Procesamiento que te permite generar múltiples tamaños en segundos.</li>
         <li><strong>Simple:</strong> Interfaz intuitiva y fácil de usar, sin complicaciones.</li>
         <li><strong>Flexible:</strong> Elige entre tamaños predefinidos o personaliza las dimensiones exactas que necesitas.</li>
     </ul>

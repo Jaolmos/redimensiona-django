@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Subir imagen - Redimensiona{% endblock %}
+
+{% block content %}
+<h2>Sube tu imagen</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {% for field in form %}
+    <div>
+        {{ field.label_tag }}
+        {{ field }}
+        
+        {% if field.errors %}
+        <div>
+            {% for error in field.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
+        {% endif %}
+    </div>
+    {% endfor %}
+    
+    <button type="submit">Redimensionar</button>
+</form>
+{% endblock %}
