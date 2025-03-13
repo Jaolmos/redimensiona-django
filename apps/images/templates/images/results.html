@@ -13,13 +13,23 @@
 
 <h3>Miniaturas generadas</h3>
 <div>
-    {% for thumbnail in image.thumbnails.all %}
-    <div>
-        <h4>{{ thumbnail.width }}x{{ thumbnail.height }}</h4>
-        <img src="{{ thumbnail.file.url }}" alt="Miniatura {{ thumbnail.width }}x{{ thumbnail.height }}" style="max-width: 100%;">
-        <p><a href="{{ thumbnail.file.url }}" download>Descargar</a></p>
-    </div>
-    {% endfor %}
+    {% if image.thumbnails.all %}
+        {% for thumbnail in image.thumbnails.all %}
+        <div>
+            <h4>{{ thumbnail.width }}x{{ thumbnail.height }}</h4>
+            <img src="{{ thumbnail.file.url }}" alt="Miniatura {{ thumbnail.width }}x{{ thumbnail.height }}" style="max-width: 100%;">
+            <p><a href="{{ thumbnail.file.url }}" download>Descargar</a></p>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Las miniaturas están siendo procesadas. Por favor, espera unos momentos y recarga la página.</p>
+        <script>
+            // Recargar la página automáticamente cada 3 segundos
+            setTimeout(function() {
+                window.location.reload();
+            }, 3000);
+        </script>
+    {% endif %}
 </div>
 
 <p><a href="{% url 'core:home' %}">Volver al inicio</a></p>
