@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Redimensiona - Generador de Miniaturas{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Redimensiona tus imágenes</h2>
+    <p>Herramienta simple y rápida para generar múltiples tamaños de tus imágenes</p>
+
+    <div>
+        <h3>Sube tu imagen</h3>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div>
+                <p>Selecciona una imagen:</p>
+                <input type="file" name="image" id="id_image" accept="image/*">
+            </div>
+            
+            <div>
+                <h4>Tamaños predefinidos</h4>
+                <div>
+                    <input type="checkbox" name="size_sm" id="size_sm" checked>
+                    <label for="size_sm">Pequeño (300x300px)</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="size_md" id="size_md" checked>
+                    <label for="size_md">Mediano (600x600px)</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="size_lg" id="size_lg" checked>
+                    <label for="size_lg">Grande (1200x1200px)</label>
+                </div>
+            </div>
+            
+            <div>
+                <h4>Tamaño personalizado</h4>
+                <div>
+                    <input type="number" name="custom_width" placeholder="Ancho">
+                    <span>x</span>
+                    <input type="number" name="custom_height" placeholder="Alto">
+                    <span>px</span>
+                </div>
+            </div>
+            
+            <div>
+                <button type="submit">Redimensionar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <h3>Características</h3>
+    <ul>
+        <li><strong>Rápido:</strong> Procesamiento asíncrono que te permite generar múltiples tamaños en segundos.</li>
+        <li><strong>Simple:</strong> Interfaz intuitiva y fácil de usar, sin complicaciones.</li>
+        <li><strong>Flexible:</strong> Elige entre tamaños predefinidos o personaliza las dimensiones exactas que necesitas.</li>
+    </ul>
+</div>
+{% endblock %}

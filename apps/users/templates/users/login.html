@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Iniciar sesión - Redimensiona{% endblock %}
+
+{% block content %}
+<h2>Iniciar sesión</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    
+    <div>
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.username.errors }}
+    </div>
+    
+    <div>
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {{ form.password.errors }}
+    </div>
+    
+    <button type="submit">Iniciar sesión</button>
+</form>
+
+<p>¿No tienes una cuenta? <a href="{% url 'users:register' %}">Regístrate aquí</a></p>
+{% endblock %}

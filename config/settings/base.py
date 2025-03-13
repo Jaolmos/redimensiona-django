@@ -122,3 +122,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 
 # Usuario personalizado
 AUTH_USER_MODEL = 'users.User'
+
+
+# URL de login/logout
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'core:home'
+LOGOUT_REDIRECT_URL = '/'
