@@ -504,7 +504,7 @@ button[type="submit"]:hover {
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .hero .subtitle {
@@ -922,4 +922,13 @@ input[type="checkbox"]:checked::before {
 
 input[type="checkbox"]:focus {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Brand title */
+.brand-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
 }
