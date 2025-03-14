@@ -374,7 +374,7 @@ button[type="submit"]:hover {
 
 /* Footer */
 .main-footer {
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
     padding: 1.5rem 0;
     margin-top: 4rem;
@@ -389,7 +389,7 @@ button[type="submit"]:hover {
 
 .footer-content p {
     margin: 0;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .footer-content nav {
@@ -400,7 +400,7 @@ button[type="submit"]:hover {
 .footer-content nav a {
     color: white;
     text-decoration: none;
-    opacity: 0.8;
+    opacity: 0.9;
     transition: opacity 0.3s ease;
 }
 
@@ -503,15 +503,23 @@ button[type="submit"]:hover {
 
 .hero h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 600;
 }
 
 .hero .subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.4rem;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.hero .hero-cta {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    opacity: 0.95;
 }
 
 /* Form groups */
@@ -553,10 +561,30 @@ button[type="submit"]:hover {
         font-size: 2rem;
     }
 
+    .hero .subtitle {
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+    }
+
+    .hero .hero-cta {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
     .messages {
         left: 20px;
         right: 20px;
         max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1.1rem;
     }
 }
 
