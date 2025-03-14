@@ -559,3 +559,75 @@ button[type="submit"]:hover {
         max-width: none;
     }
 }
+
+/* Estilos para enlaces con acento */
+.accent-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.accent-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Estilos para el formulario de login */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #E2E8F0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.login-form button[type="submit"] {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Estilos para el input de archivo */
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: white;
+    border: 1px solid #E2E8F0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.form-group input[type="file"]::file-selector-button {
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+}

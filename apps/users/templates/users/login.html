@@ -3,50 +3,57 @@
 {% block title %}Iniciar sesión - Redimensiona{% endblock %}
 
 {% block content %}
-<h2>Iniciar sesión</h2>
-
-{% if messages %}
-<div>
-    {% for message in messages %}
-    <div>
-        {{ message }}
-    </div>
-    {% endfor %}
+<div class="hero text-center mt-2 mb-2">
+    <h2>Iniciar sesión</h2>
+    <p class="subtitle">Accede a tu cuenta para gestionar tus imágenes</p>
 </div>
-{% endif %}
 
-<form method="post">
-    {% csrf_token %}
-    
-    {% if form.non_field_errors %}
-    <div>
-        {% for error in form.non_field_errors %}
-            {{ error }}
+<div class="upload-section">
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}message-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
         {% endfor %}
     </div>
     {% endif %}
-    
-    {% for field in form %}
-    <div>
-        {{ field.label_tag }}
-        {{ field }}
+
+    <form method="post" class="login-form">
+        {% csrf_token %}
         
-        {% if field.errors %}
-        <div>
-            {% for error in field.errors %}
-            <span>{{ error }}</span>
+        {% if form.non_field_errors %}
+        <div class="error">
+            {% for error in form.non_field_errors %}
+                {{ error }}
             {% endfor %}
         </div>
         {% endif %}
         
-        {% if field.help_text %}
-        <small>{{ field.help_text }}</small>
-        {% endif %}
-    </div>
-    {% endfor %}
-    
-    <button type="submit">Iniciar sesión</button>
-</form>
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            
+            {% if field.errors %}
+            <div class="error">
+                {% for error in field.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if field.help_text %}
+            <small class="help-text">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit">Iniciar sesión</button>
+    </form>
 
-<p>¿No tienes una cuenta? <a href="{% url 'users:register' %}">Regístrate aquí</a></p>
+    <div class="text-center mt-2">
+        <p>¿No tienes una cuenta? <a href="{% url 'users:register' %}" class="accent-link">Regístrate aquí</a></p>
+    </div>
+</div>
 {% endblock %}
