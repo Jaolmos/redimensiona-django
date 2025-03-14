@@ -1,5 +1,5 @@
-/* Importar fuente Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Importar fuente Nunito */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
 
 /* Variables globales */
 :root {
@@ -19,7 +19,7 @@
 
 /* Estilos generales */
 body {
-    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
@@ -882,4 +882,44 @@ button[type="submit"]:hover {
     .original-image-section .image-preview {
         max-height: 300px;
     }
+}
+
+/* Estilos para checkboxes */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #E2E8F0;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:hover {
+    border-color: var(--accent-color);
+}
+
+input[type="checkbox"]:checked {
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    border: none;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+}
+
+input[type="checkbox"]:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
