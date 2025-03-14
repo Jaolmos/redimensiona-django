@@ -3,39 +3,54 @@
 {% block title %}Panel de control - Redimensiona{% endblock %}
 
 {% block content %}
-<h2>Mi panel de control</h2>
+<div class="hero text-center">
+    <h2>Mi Panel de Control</h2>
+    <p class="subtitle">Gestiona tus imágenes y miniaturas</p>
+</div>
 
 {% if messages %}
-<div>
+<div class="messages">
     {% for message in messages %}
-    <div>
+    <div class="message {% if message.tags %}message-{{ message.tags }}{% endif %}">
         {{ message }}
     </div>
     {% endfor %}
 </div>
 {% endif %}
 
-<div>
-    <h3>Mis imágenes</h3>
+<div class="upload-section">
+    <h3 class="text-center mb-2">Mis Imágenes</h3>
     
     {% if user_images %}
-        <div>
+        <div class="image-grid">
             {% for image in user_images %}
-            <div>
-                <h4>{{ image.title|default:"Imagen sin título" }}</h4>
-                <img src="{{ image.original_image.url }}" alt="Vista previa" style="max-width: 200px; max-height: 200px;">
-                <p>Subida el: {{ image.uploaded_at }}</p>
-                <p>Miniaturas: {{ image.thumbnails.count }}</p>
-                <p>
-                    <a href="{% url 'images:results' image_id=image.id %}">Ver detalles</a>
-                    <a href="{% url 'users:delete_image' image_id=image.id %}" onclick="return confirm('¿Estás seguro de que quieres eliminar esta imagen?');">Eliminar</a>
-                </p>
+            <div class="image-card">
+                <div class="image-preview">
+                    <img src="{{ image.original_image.url }}" alt="{{ image.title|default:'Imagen sin título' }}">
+                </div>
+                <div class="image-info">
+                    <h4>{{ image.title|default:"Imagen sin título" }}</h4>
+                    <div class="image-metadata">
+                        <p><strong>Subida:</strong> {{ image.uploaded_at|date:"d/m/Y H:i" }}</p>
+                        <p><strong>Miniaturas:</strong> {{ image.thumbnails.count }}</p>
+                    </div>
+                    <div class="image-actions">
+                        <a href="{% url 'images:results' image_id=image.id %}" class="btn-primary">Ver detalles</a>
+                        <a href="{% url 'users:delete_image' image_id=image.id %}" 
+                           class="btn-danger"
+                           onclick="return confirm('¿Estás seguro de que quieres eliminar esta imagen?');">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
     {% else %}
-        <p>No has subido ninguna imagen todavía.</p>
-        <p><a href="{% url 'core:home' %}">Subir una imagen</a></p>
+        <div class="empty-state text-center">
+            <p>No has subido ninguna imagen todavía.</p>
+            <a href="{% url 'core:home' %}" class="btn-primary mt-2">Subir una imagen</a>
+        </div>
     {% endif %}
 </div>
 {% endblock %}

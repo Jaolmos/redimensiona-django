@@ -631,3 +631,255 @@ button[type="submit"]:hover {
 .form-group input[type="file"]::file-selector-button:hover {
     background: linear-gradient(to right, var(--primary-color), var(--accent-color));
 }
+
+/* Estilos para el Dashboard */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.image-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.image-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(99, 102, 241, 0.1);
+}
+
+.image-preview {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-card:hover .image-preview img {
+    transform: scale(1.05);
+}
+
+.image-info {
+    padding: 1.5rem;
+}
+
+.image-info h4 {
+    color: var(--secondary-color);
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.image-metadata {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.image-metadata p {
+    margin: 0.5rem 0;
+}
+
+.image-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-primary, .btn-danger {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+    color: white;
+}
+
+.btn-danger {
+    background: linear-gradient(to right, var(--error-color), #DC2626);
+    color: white;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-state p {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments for dashboard */
+@media (max-width: 768px) {
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .image-actions {
+        flex-direction: column;
+    }
+
+    .image-preview {
+        height: 180px;
+    }
+}
+
+/* Estilos para la página de resultados */
+.results-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.section-title {
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.original-image-section {
+    margin-bottom: 3rem;
+}
+
+.original-image-section .image-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.original-image-section .image-preview {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.original-image-section .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.original-image-section .image-info {
+    padding: 1.5rem;
+    background: white;
+}
+
+.thumbnails-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.thumbnail-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+}
+
+.thumbnail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(99, 102, 241, 0.1);
+}
+
+.thumbnail-preview {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.thumbnail-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail-card:hover .thumbnail-preview img {
+    transform: scale(1.05);
+}
+
+.thumbnail-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.thumbnail-info h4 {
+    color: var(--secondary-color);
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.processing-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(99, 102, 241, 0.1);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.actions-section {
+    margin-top: 3rem;
+}
+
+/* Responsive adjustments for results page */
+@media (max-width: 768px) {
+    .results-container {
+        padding: 1rem;
+    }
+
+    .thumbnails-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .original-image-section .image-preview {
+        max-height: 300px;
+    }
+}

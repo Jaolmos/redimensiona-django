@@ -3,34 +3,57 @@
 {% block title %}Resultados - Redimensiona{% endblock %}
 
 {% block content %}
-<h2>Resultados</h2>
-
-<div>
-    <h3>Imagen original</h3>
-    <img src="{{ image.original_image.url }}" alt="Imagen original" style="max-width: 100%; max-height: 300px;">
-    <p>Subida el: {{ image.uploaded_at }}</p>
+<div class="hero text-center">
+    <h2>Resultados del Procesamiento</h2>
+    <p class="subtitle">Visualiza tu imagen original y sus miniaturas</p>
 </div>
 
-<h3>Miniaturas generadas</h3>
-<div>
-    {% if image.thumbnails.all %}
-        {% for thumbnail in image.thumbnails.all %}
-        <div>
-            <h4>{{ thumbnail.width }}x{{ thumbnail.height }}</h4>
-            <img src="{{ thumbnail.file.url }}" alt="Miniatura {{ thumbnail.width }}x{{ thumbnail.height }}" style="max-width: 100%;">
-            <p><a href="{{ thumbnail.file.url }}" download>Descargar</a></p>
+<div class="results-container">
+    <div class="original-image-section">
+        <h3 class="section-title">Imagen Original</h3>
+        <div class="image-card">
+            <div class="image-preview">
+                <img src="{{ image.original_image.url }}" alt="Imagen original">
+            </div>
+            <div class="image-info">
+                <p><strong>Subida el:</strong> {{ image.uploaded_at|date:"d/m/Y H:i" }}</p>
+            </div>
         </div>
-        {% endfor %}
-    {% else %}
-        <p>Las miniaturas están siendo procesadas. Por favor, espera unos momentos y recarga la página.</p>
-        <script>
-            // Recargar la página automáticamente cada 3 segundos
-            setTimeout(function() {
-                window.location.reload();
-            }, 3000);
-        </script>
-    {% endif %}
-</div>
+    </div>
 
-<p><a href="{% url 'core:home' %}">Volver al inicio</a></p>
+    <div class="thumbnails-section">
+        <h3 class="section-title">Miniaturas Generadas</h3>
+        {% if image.thumbnails.all %}
+            <div class="thumbnails-grid">
+                {% for thumbnail in image.thumbnails.all %}
+                <div class="thumbnail-card">
+                    <div class="thumbnail-preview">
+                        <img src="{{ thumbnail.file.url }}" alt="Miniatura {{ thumbnail.width }}x{{ thumbnail.height }}">
+                    </div>
+                    <div class="thumbnail-info">
+                        <h4>{{ thumbnail.width }}x{{ thumbnail.height }}</h4>
+                        <a href="{{ thumbnail.file.url }}" download class="btn-primary">
+                            Descargar
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="processing-state">
+                <div class="spinner"></div>
+                <p>Las miniaturas están siendo procesadas. Por favor, espera unos momentos...</p>
+                <script>
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 3000);
+                </script>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="actions-section text-center">
+        <a href="{% url 'core:home' %}" class="btn-primary">Volver al inicio</a>
+    </div>
+</div>
 {% endblock %}
