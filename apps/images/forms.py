@@ -23,13 +23,6 @@ class ImageUploadForm(forms.ModelForm):
     )
     
     # Tamaño personalizado
-    custom_width = forms.IntegerField(
-        label=_('Ancho personalizado'),
-        required=False,
-        min_value=10,
-        max_value=2000,
-        help_text=_('Deja en blanco para calcular automáticamente basado en el alto')
-    )
     custom_height = forms.IntegerField(
         label=_('Alto personalizado'),
         required=False,
@@ -37,6 +30,15 @@ class ImageUploadForm(forms.ModelForm):
         max_value=2000,
         help_text=_('Deja en blanco para calcular automáticamente basado en el ancho')
     )
+    
+    custom_width = forms.IntegerField(
+        label=_('Ancho personalizado'),
+        required=False,
+        min_value=10,
+        max_value=2000,
+        help_text=_('Deja en blanco para calcular automáticamente basado en el alto')
+    )
+    
     
     class Meta:
         model = Image
