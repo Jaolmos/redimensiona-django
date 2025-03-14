@@ -1,3 +1,4 @@
+{% load static %}
 <header class="main-header">
     <div class="container">
         <div class="header-content">
@@ -17,11 +18,11 @@
                 <ul class="nav-list">
                     <li class="nav-item"><a href="{% url 'core:home' %}" class="nav-link">Inicio</a></li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item user-welcome">
-                            <span>Bienvenido, {{ user.email }}</span>
-                        </li>
                         <li class="nav-item">
                             <a href="{% url 'users:dashboard' %}" class="nav-link">Dashboard</a>
+                        </li>
+                        <li class="nav-item user-welcome">
+                            <span>Bienvenid@, {{ user.email }}</span>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'users:logout' %}" class="nav-link nav-link-logout">Cerrar sesión</a>
