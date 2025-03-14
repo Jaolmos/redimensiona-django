@@ -3,46 +3,55 @@
 {% block title %}Redimensiona - Generador de Miniaturas{% endblock %}
 
 {% block content %}
-<div>
+<div class="hero text-center mt-2 mb-2">
     <h2>Redimensiona tus imágenes</h2>
-    <p>Herramienta simple y rápida para generar múltiples tamaños de tus imágenes</p>
-
-    <div>
-        <h3>Sube tu imagen</h3>
-        
-        <form method="post" action="{% url 'images:upload' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            {% for field in form %}
-            <div>
-                {{ field.label_tag }}
-                {{ field }}
-                
-                {% if field.errors %}
-                <div>
-                    {% for error in field.errors %}
-                    <span>{{ error }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                
-                {% if field.help_text %}
-                <small>{{ field.help_text }}</small>
-                {% endif %}
-            </div>
-            {% endfor %}
-            
-            <button type="submit">Redimensionar</button>
-        </form>
-    </div>
+    <p class="subtitle">Herramienta simple y rápida para generar múltiples tamaños de tus imágenes</p>
 </div>
 
-<div>
-    <h3>Características</h3>
+<div class="upload-section">
+    <h3 class="text-center">Sube tu imagen</h3>
+    
+    <form method="post" action="{% url 'images:upload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            
+            {% if field.errors %}
+            <div class="error">
+                {% for error in field.errors %}
+                <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if field.help_text %}
+            <small class="help-text">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+        {% endfor %}
+        
+        <button type="submit">Redimensionar</button>
+    </form>
+</div>
+
+<div class="features mt-2">
+    <h3 class="text-center mb-2">Características</h3>
     <ul>
-        <li><strong>Rápido:</strong> Procesamiento que te permite generar múltiples tamaños en segundos.</li>
-        <li><strong>Simple:</strong> Interfaz intuitiva y fácil de usar, sin complicaciones.</li>
-        <li><strong>Flexible:</strong> Elige entre tamaños predefinidos o personaliza las dimensiones exactas que necesitas.</li>
+        <li>
+            <strong>Rápido</strong>
+            <p>Procesamiento que te permite generar múltiples tamaños en segundos.</p>
+        </li>
+        <li>
+            <strong>Simple</strong>
+            <p>Interfaz intuitiva y fácil de usar, sin complicaciones.</p>
+        </li>
+        <li>
+            <strong>Flexible</strong>
+            <p>Elige entre tamaños predefinidos o personaliza las dimensiones exactas que necesitas.</p>
+        </li>
     </ul>
 </div>
 {% endblock %}
