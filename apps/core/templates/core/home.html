@@ -4,12 +4,13 @@
 
 {% block content %}
 <div class="hero text-center mt-2 mb-2">
-    <h2>Redimensiona tus imágenes</h2>
-    <p class="subtitle">Herramienta simple y rápida para generar múltiples tamaños de tus imágenes</p>
+    <h2>Crea miniaturas perfectas al instante</h2>
+    <p class="subtitle">3 miniaturas sin registro • Proceso instantáneo • 100% gratis</p>
+    <p class="hero-cta">¿Necesitas más? Regístrate y obtén miniaturas ilimitadas y archivos hasta 20MB ✨</p>
 </div>
 
 <div class="upload-section">
-    <h3 class="text-center">Sube tu imagen</h3>
+    <h3 class="text-center">Comienza ahora</h3>
     
     <form method="post" action="{% url 'images:upload' %}" enctype="multipart/form-data">
         {% csrf_token %}
@@ -33,25 +34,40 @@
         </div>
         {% endfor %}
         
-        <button type="submit">Redimensionar</button>
+        <button type="submit">Generar miniaturas</button>
     </form>
 </div>
 
 <div class="features mt-2">
-    <h3 class="text-center mb-2">Características</h3>
+    <h3 class="text-center mb-2">Elige tu plan (¡Ambos gratis!)</h3>
     <ul>
         <li>
-            <strong>Rápido</strong>
-            <p>Procesamiento que te permite generar múltiples tamaños en segundos.</p>
+            <strong>Sin Registro 🎁</strong>
+            <p>• 3 miniaturas por sesión<br>
+               • Hasta 2MB por imagen<br>
+               • Proceso instantáneo<br>
+               • Sin necesidad de cuenta</p>
         </li>
         <li>
-            <strong>Simple</strong>
-            <p>Interfaz intuitiva y fácil de usar, sin complicaciones.</p>
+            <strong>Con Registro ⭐</strong>
+            <p>• Miniaturas ilimitadas<br>
+               • Hasta 20MB por imagen<br>
+               • Acceso permanente<br>
+               • Historial de imágenes</p>
         </li>
         <li>
-            <strong>Flexible</strong>
-            <p>Elige entre tamaños predefinidos o personaliza las dimensiones exactas que necesitas.</p>
+            <strong>Características 🎯</strong>
+            <p>• Múltiples tamaños por imagen<br>
+               • Dimensiones personalizadas<br>
+               • Preserva la calidad<br>
+               • Proceso automatizado</p>
         </li>
     </ul>
+</div>
+
+<div class="cta-section text-center mt-2">
+    <h3>¿Por qué registrarse?</h3>
+    <p>Más capacidad, sin límites de uso y siempre gratis. ¡Crea tu cuenta en segundos!</p>
+    <a href="{% url 'users:register' %}" class="btn-primary">Crear cuenta gratuita</a>
 </div>
 {% endblock %}
