@@ -1,16 +1,53 @@
-<header>
-    <h1>Redimensiona</h1>
-    <nav>
-        <ul>
-            <li><a href="{% url 'core:home' %}">Inicio</a></li>
-            {% if user.is_authenticated %}
-                <li><span>Bienvenido, {{ user.email }}</span></li>
-                <li><a href="{% url 'users:dashboard' %}">Dashboard</a></li>
-                <li><a href="{% url 'users:logout' %}">Cerrar sesión</a></li>
-            {% else %}
-                <li><a href="{% url 'users:login' %}">Iniciar sesión</a></li>
-                <li><a href="{% url 'users:register' %}">Registrarse</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+<header class="main-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="{% url 'core:home' %}" class="logo-link">
+                    <h1>Redimensiona</h1>
+                </a>
+            </div>
+            
+            <button class="mobile-menu-button" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="{% url 'core:home' %}" class="nav-link">Inicio</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item user-welcome">
+                            <span>Bienvenido, {{ user.email }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'users:dashboard' %}" class="nav-link">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'users:logout' %}" class="nav-link nav-link-logout">Cerrar sesión</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'users:login' %}" class="nav-link nav-link-login">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'users:register' %}" class="nav-link nav-link-register">Registrarse</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mainNav = document.querySelector('.main-nav');
+    
+    menuButton.addEventListener('click', function() {
+        menuButton.classList.toggle('active');
+        mainNav.classList.toggle('active');
+    });
+});
+</script>

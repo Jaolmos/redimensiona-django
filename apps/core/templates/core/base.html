@@ -1,10 +1,23 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Redimensiona - Herramienta simple y rápida para generar múltiples tamaños de tus imágenes">
     <title>{% block title %}Redimensiona - Generador de Miniaturas{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block extra_css %}{% endblock %}
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'core/includes/nav.html' %}
@@ -13,7 +26,9 @@
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
-                    <div>{{ message }}</div>
+                    <div class="message {% if message.tags %}message-{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
                 {% endfor %}
             </div>
         {% endif %}
@@ -23,6 +38,21 @@
 
     {% include 'core/includes/footer.html' %}
 
+    <!-- Scripts -->
+    <script>
+        // Función para ocultar los mensajes después de 5 segundos
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const messages = document.querySelector('.messages');
+                if (messages) {
+                    messages.style.opacity = '0';
+                    setTimeout(function() {
+                        messages.remove();
+                    }, 300);
+                }
+            }, 5000);
+        });
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
