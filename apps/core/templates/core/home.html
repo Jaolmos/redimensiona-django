@@ -21,6 +21,11 @@
             {{ field.label_tag }}
             {{ field }}
             
+            {% if field.name == 'original_image' %}
+            <!-- Div para mostrar la vista previa de la imagen antes de subirla -->
+            <div id="image-preview" class="mt-2"></div>
+            {% endif %}
+            
             {% if field.errors %}
             <div class="error">
                 {% for error in field.errors %}
@@ -71,4 +76,60 @@
     <p>Más capacidad, sin límites de uso y siempre gratis. ¡Crea tu cuenta en segundos!</p>
     <a href="{% url 'users:register' %}" class="btn-primary">Crear cuenta gratuita</a>
 </div>
+
+<script>
+    // Cuando el documento esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener el input de la imagen
+        const inputImagen = document.querySelector('input[type="file"]');
+        // Obtener el div de vista previa
+        const previewDiv = document.querySelector('#image-preview');
+
+        // Cuando se seleccione una imagen
+        inputImagen.addEventListener('change', function() {
+            const archivo = this.files[0];
+            if (archivo) {
+                const reader = new FileReader();
+                
+                // Mostrar la imagen cuando se cargue
+                reader.onload = function(e) {
+                    previewDiv.innerHTML = `
+                        <div style="position: relative;">
+                            <img src="${e.target.result}" 
+                                 style="max-width: 300px; 
+                                        border-radius: 8px; 
+                                        margin-top: 10px; 
+                                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <button type="button" 
+                                    onclick="limpiarSeleccion()"
+                                    style="position: absolute; 
+                                           top: 15px; 
+                                           right: 5px; 
+                                           background: #ff4444; 
+                                           color: white; 
+                                           border: none; 
+                                           border-radius: 50%; 
+                                           width: 25px; 
+                                           height: 25px; 
+                                           cursor: pointer;">×</button>
+                        </div>
+                    `;
+                }
+                
+                reader.readAsDataURL(archivo);
+            } else {
+                // Si no hay archivo seleccionado, limpiar la vista previa
+                previewDiv.innerHTML = '';
+            }
+        });
+    });
+
+    // Función para limpiar la selección
+    function limpiarSeleccion() {
+        const inputImagen = document.querySelector('input[type="file"]');
+        const previewDiv = document.querySelector('#image-preview');
+        inputImagen.value = ''; // Limpia el input
+        previewDiv.innerHTML = ''; // Limpia la vista previa
+    }
+</script>
 {% endblock %}
