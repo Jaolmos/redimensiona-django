@@ -26,7 +26,7 @@ Redimensiona es una aplicación web desarrollada con Django que permite a los us
 ## 🛠️ Tecnologías
 
 ### Backend
-- Django 5.0
+- Django 5
 - Celery (procesamiento asíncrono)
 - Redis (message broker)
 - MySQL
