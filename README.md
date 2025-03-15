@@ -68,7 +68,7 @@ redimensiona/
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/tuusuario/redimensiona.git
+git clone https://github.com/Jaolmos/redimensiona-django.git
 cd redimensiona
 ```
 
