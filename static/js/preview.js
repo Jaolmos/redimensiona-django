@@ -2,7 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputImagen = document.querySelector('input[type="file"]');
     const previewDiv = document.querySelector('#image-preview');
+    const inputAlto = document.querySelector('input[name="custom_height"]');
+    const inputAncho = document.querySelector('input[name="custom_width"]');
+    let aspectRatio = 0; // Proporción de la imagen
 
+    // Cuando se seleccione una imagen
     inputImagen.addEventListener('change', function() {
         const archivo = this.files[0];
         if (archivo) {
@@ -13,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.src = e.target.result;
                 
                 img.onload = function() {
+                    // Guardar la proporción de la imagen
+                    aspectRatio = this.width / this.height;
+                    
                     previewDiv.innerHTML = `
                         <div style="position: relative;">
                             <img src="${e.target.result}" 
@@ -47,11 +54,35 @@ document.addEventListener('DOMContentLoaded', function() {
             previewDiv.innerHTML = '';
         }
     });
+
+    // Calcular alto cuando se introduce ancho
+    inputAncho.addEventListener('input', function() {
+        if (aspectRatio && this.value) {
+            const nuevoAlto = Math.round(this.value / aspectRatio);
+            inputAlto.value = nuevoAlto;
+        } else {
+            inputAlto.value = '';
+        }
+    });
+
+    // Calcular ancho cuando se introduce alto
+    inputAlto.addEventListener('input', function() {
+        if (aspectRatio && this.value) {
+            const nuevoAncho = Math.round(this.value * aspectRatio);
+            inputAncho.value = nuevoAncho;
+        } else {
+            inputAncho.value = '';
+        }
+    });
 });
 
 function limpiarSeleccion() {
     const inputImagen = document.querySelector('input[type="file"]');
     const previewDiv = document.querySelector('#image-preview');
+    const inputAlto = document.querySelector('input[name="custom_height"]');
+    const inputAncho = document.querySelector('input[name="custom_width"]');
     inputImagen.value = '';
     previewDiv.innerHTML = '';
+    inputAlto.value = '';
+    inputAncho.value = '';
 } 
