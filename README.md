@@ -56,13 +56,20 @@ redimensiona/
 ├── config/            # Configuración del proyecto
 ├── static/
 │   ├── css/          # Estilos
+│   ├── img/          # Imágenes estáticas
 │   └── js/           # Scripts
 │       ├── preview.js    # Vista previa de imágenes
 │       └── lightbox.js   # Visualización de imágenes
-├── templates/         # Plantillas HTML
-├── media/            # Archivos subidos
-└── requirements.txt   # Dependencias
+├── media/            # Archivos subidos (no versionado)
+├── .env              # Variables de entorno (no versionado)
+├── .env.example      # Ejemplo de variables de entorno
+├── .gitignore        # Configuración de Git
+├── manage.py         # Script de gestión de Django
+├── README.md         # Documentación del proyecto
+└── requirements.txt  # Dependencias del proyecto
 ```
+
+> **Nota**: El directorio `media/` no se incluye en el control de versiones ya que contiene archivos subidos por los usuarios.
 
 ## ⚙️ Instalación
 
