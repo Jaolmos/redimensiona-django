@@ -30,7 +30,7 @@ Redimensiona es una aplicación web desarrollada con Django que permite a los us
     • Acceso permanente
     • Historial de imágenes
 
-## 📸 Capturas de Pantalla y Demo
+## 📸 Capturas de Pantalla
 
 ### Vista Previa de la Aplicación
 
@@ -45,11 +45,6 @@ Redimensiona es una aplicación web desarrollada con Django que permite a los us
 #### Resultados
 ![Página de Resultados](screenshots/results.png)
 *Vista de resultados mostrando la imagen procesada y sus miniaturas*
-
-### Video Demostración
-🎥 [Ver Demo en Acción](demo.mp4)
-
-*Video demostrativo de 1 minuto que muestra el proceso completo de redimensionamiento de imágenes*
 
 ## 🛠️ Tecnologías
 
