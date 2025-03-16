@@ -11,6 +11,13 @@ Redimensiona es una aplicación web desarrollada con Django que permite a los us
   - Procesamiento asíncrono
   - Múltiples formatos soportados
 
+- **Sistema de Usuarios**
+  - Registro de usuarios
+  - Autenticación segura
+  - Perfiles personalizados
+  - Historial de procesamiento
+  - Gestión de sesiones
+
 - **Planes Gratuitos**
   - Plan sin registro:
     • 3 imágenes gratuitas
@@ -158,7 +165,7 @@ celery -A config worker --pool=solo -l INFO
 ## 📋 Buenas Prácticas y Patrones de Diseño
 
 ### Arquitectura y Organización
-- Separación clara de responsabilidades (patrón MVC)
+- Separación clara de responsabilidades (patrón MVT de Django)
 - Estructura modular por aplicaciones Django
 - Configuración separada por entornos
 - Sistema de plantillas heredables
@@ -168,12 +175,6 @@ celery -A config worker --pool=solo -l INFO
 - Documentación de funciones y clases
 - Código DRY (Don't Repeat Yourself)
 - Tipado de datos consistente
-
-### Patrones Implementados
-- Factory Pattern para procesamiento de imágenes
-- Observer Pattern para actualizaciones asíncronas
-- Repository Pattern para acceso a datos
-- Strategy Pattern para diferentes estrategias de redimensionamiento
 
 ### Optimización y Rendimiento
 - Procesamiento asíncrono de tareas pesadas
